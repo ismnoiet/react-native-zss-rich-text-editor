@@ -92,7 +92,7 @@ export default class RichTextEditor extends Component {
     const editorAvailableHeight = Dimensions.get('window').height - keyboardHeight - spacing;
     this.setEditorHeight(editorAvailableHeight);
   }
-  
+
   onBridgeMessage(str){
     try {
       const message = JSON.parse(str);
@@ -183,6 +183,9 @@ export default class RichTextEditor extends Component {
         }
         case messages.CONTENT_CHANGE: {
           const content = message.data.content;
+          if(this.props.onChange){
+            this.props.onChange(content);
+          }
           this.state.onChange.map((listener) => listener(content));
           break;
         }
@@ -352,7 +355,7 @@ export default class RichTextEditor extends Component {
       selectionChangeListeners: [...this.state.selectionChangeListeners, listener]
     });
   }
-  
+
   enableOnChange() {
     this._sendAction(actions.enableOnChange);
   }
