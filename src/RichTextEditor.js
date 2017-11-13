@@ -182,7 +182,7 @@ export default class RichTextEditor extends Component {
           break;
         }
         case messages.CONTENT_CHANGE: {
-          const content = message.data.content;
+          const content = message.data;
           if(this.props.onChange){
             this.props.onChange(content);
           }
