@@ -1380,7 +1380,7 @@
 				$('#zss_editor_content').on('input', function(){
 					WebViewBridge.send(JSON.stringify({
 						type: 'CONTENT_CHANGE',
-						data: {content: getHtml("zss_editor_content"),
+						data: {html: getHtml("zss_editor_content"),
 										text: getText("zss_editor_content")
 									}
 					}))
