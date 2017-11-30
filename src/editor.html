@@ -917,8 +917,11 @@
 				whenPastingInsertAsPlainText('zss_editor_title');
 				whenPastingInsertAsPlainText('zss_editor_content');
 
-				zss_editor.focusTitle();
+				// @ismnoiet: don't focus on the title, and hide it.
+				// zss_editor.focusTitle();
+				zss_editor.hideTitle();
 
+				// @note: if u increase the timeout duration you will see content rendered slowly
 				setTimeout(function() {
 					WebViewBridge.send(JSON.stringify({type: 'ZSS_INITIALIZED'}))
 				}, 20);
