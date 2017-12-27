@@ -196,6 +196,12 @@ export default class RichTextEditor extends Component {
           });
           break;
         }
+        case messages.TYPING_STOPPED:{
+          const data = message.data;
+          if(this.props.onTypingStopped){
+            this.props.onTypingStopped();
+          }
+        }
       }
     } catch(e) {
       //alert('NON JSON MESSAGE');

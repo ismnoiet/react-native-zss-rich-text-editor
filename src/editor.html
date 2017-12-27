@@ -892,6 +892,25 @@
 					notifyIfSelectedTextHasChanged();
 				});
 
+				// section-begin: listen for keyup to save note info.
+					var typingTimer;                //timer identifier
+					var doneTypingInterval = 2000;  //time in ms (5 seconds)
+
+					//user is "finished typing," do something
+					function doneTyping () {
+						var content = getText("zss_editor_content").trim();
+						WebViewBridge.send(JSON.stringify({type: 'TYPING_STOPPED', val: content}))
+					}
+					//on keyup, start the countdown
+					$('#zss_editor_content').keyup(function(){
+						var content = getText("zss_editor_content").trim();
+						clearTimeout(typingTimer);
+						if (content) {
+								typingTimer = setTimeout(doneTyping, doneTypingInterval);
+						}
+					});
+				// section-end: listen for keyup to save note info.
+
 				// Make sure that when we tap anywhere in the document we focus on the editor
 				$(window).on('touchmove', function(e) {
 					zss_editor.isDragging = true;
